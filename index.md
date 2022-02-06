@@ -1,1 +1,3 @@
-# 책을 읽으며 정리한 노트
+# Logical Foundations
+
+[전자책 위치](https://softwarefoundations.cis.upenn.edu/lf-current/index.html)

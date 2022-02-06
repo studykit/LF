@@ -1,0 +1,23 @@
+{
+    "coq.coqProjectRoot": "codes/",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#774b5e",
+        "activityBar.activeBorder": "#1f2719",
+        "activityBar.background": "#774b5e",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#1f2719",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "sash.hoverBorder": "#774b5e",
+        "statusBar.background": "#583745",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#774b5e",
+        "statusBarItem.remoteBackground": "#583745",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#583745",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#58374599",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#583745"
+}
