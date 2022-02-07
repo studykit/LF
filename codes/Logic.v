@@ -411,7 +411,10 @@ Proof.
 Fact not_implies_our_not : forall (P:Prop),
   ~ P -> (forall (Q:Prop), P -> Q).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P NP Q PI.
+  apply NP in PI.
+  destruct PI.
+Qed.
 (** [] *)
 
 (** Inequality is a frequent enough example of negated statement
@@ -480,14 +483,27 @@ Definition manual_grade_for_double_neg_inf : option (nat*string) := None.
 Theorem contrapositive : forall (P Q : Prop),
   (P -> Q) -> (~Q -> ~P).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P Q HPQ.
+  unfold not.
+  intros HNQ PI.
+  apply HPQ in PI.
+  apply HNQ in PI.
+  destruct PI.
+Qed.
 (** [] *)
 
 (** **** Exercise: 1 star, standard (not_both_true_and_false) *)
 Theorem not_both_true_and_false : forall P : Prop,
   ~ (P /\ ~P).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P.
+  unfold not.
+  intros pnotp.
+  destruct pnotp as [p notp].
+  apply notp in p.
+  destruct p.
+Qed.
+
 (** [] *)
 
 (** **** Exercise: 1 star, advanced (informal_not_PNP)
@@ -627,19 +643,63 @@ Qed.
 Theorem iff_refl : forall P : Prop,
   P <-> P.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P.
+  split.
+  - (* -> *)
+    intros p.
+    apply p.
+  - (* <- *)
+    intros p.
+    apply p.
+Qed.
 
 Theorem iff_trans : forall P Q R : Prop,
   (P <-> Q) -> (Q <-> R) -> (P <-> R).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P Q R [HPQ HQP] [HQR HRQ].
+  split.
+  - intros p.
+    apply HPQ in p.
+    apply HQR in p.
+    apply p.
+  - intros r.
+    apply HRQ in r.
+    apply HQP in r.
+    apply r.
+Qed.
+
 (** [] *)
 
 (** **** Exercise: 3 stars, standard (or_distributes_over_and) *)
 Theorem or_distributes_over_and : forall P Q R : Prop,
   P \/ (Q /\ R) <-> (P \/ Q) /\ (P \/ R).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P Q R.
+  split.
+  - (* P ∨ Q ∧ R -> (P ∨ Q) ∧ (P ∨ R) *)
+    intros [p | [q r]].
+    (* (P ∨ Q) ∧ (P ∨ R) *)
+    + (* P *)
+      split.
+      * (* P ∨ Q *)
+        left. apply p.
+      * (* P ∨ R *)
+        left. apply p.
+    + (* Q ∧ R *)
+      split.
+      * (* P ∨ Q *)
+        right. apply q.
+      * (* P ∨ R *)
+        right. apply r.
+  - (* (P ∨ Q) ∧ (P ∨ R) -> P ∨ Q ∧ R *)
+    intros [ [p1 | q] [p2 | r]]. (* (P ∨ Q) ∧ (P ∨ R) *)
+    + left. apply p1.
+    + left. apply p1.  
+    + left. apply p2. 
+    + right. split. 
+      * apply q.
+      * apply r.
+Qed.
 (** [] *)
 
 (* ================================================================= *)
